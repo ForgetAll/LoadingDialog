@@ -65,7 +65,7 @@ ld.setLoadingText("加载中")
 ")
 
 提供你使用的一些方法：
-* setSize(int size)：可以通过这个来设置弹框的尺寸
+* * setSize(int size)：可以通过这个来设置弹框的尺寸，首先我这要求长宽相等的，所以只给一个参数设置他的尺寸就行了。再者我在自定义View里也会把不同的长宽处理成一样的。
 * show()：展示你设置的loadingDialog
 * close()：关闭动画释放一些资源
 * setLoadingText(String msg)：设置Loading时的文字
