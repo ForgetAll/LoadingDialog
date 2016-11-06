@@ -16,4 +16,8 @@
     <item
         android:id="@+id/repeat"
         android:title="@string/repeat_draw" />
+
+    <item
+        android:id="@+id/color"
+        android:title="@string/change_color"/>
 </menu>

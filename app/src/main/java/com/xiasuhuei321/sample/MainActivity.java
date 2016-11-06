@@ -1,5 +1,6 @@
 package com.xiasuhuei321.sample;
 
+import android.graphics.Color;
 import android.os.Handler;
 import android.os.Message;
 import android.support.v7.app.AppCompatActivity;
@@ -27,6 +28,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     private long delayedTime = 1000L;
     private int repeatTime = 0;
     private boolean intercept_back_event = false;
+    private int color = Color.WHITE;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -94,6 +96,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                         .setInterceptBack(intercept_back_event)
                         .setLoadSpeed(speed)
                         .setRepeatCount(repeatTime)
+                        .setDrawColor(color)
                         .show();
                 h.sendEmptyMessageDelayed(LOAD_SUCCESS, delayedTime);
                 saveForThesePeopleWhoDoNotCallCloseAndUseInterceptBackMethod(intercept_back_event);
@@ -106,6 +109,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                         .setInterceptBack(intercept_back_event)
                         .setLoadSpeed(speed)
                         .setRepeatCount(repeatTime)
+                        .setDrawColor(color)
                         .show();
                 h.sendEmptyMessageDelayed(LOAD_FAILED, delayedTime);
                 saveForThesePeopleWhoDoNotCallCloseAndUseInterceptBackMethod(intercept_back_event);
@@ -118,6 +122,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                         .setInterceptBack(intercept_back_event)
                         .setLoadSpeed(speed)
                         .closeSuccessAnim()
+                        .setDrawColor(color)
                         .setRepeatCount(repeatTime)
                         .show();
                 h.sendEmptyMessageDelayed(LOAD_WITHOUT_ANIM_SUCCESS, delayedTime);
@@ -131,6 +136,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                         .setInterceptBack(intercept_back_event)
                         .setLoadSpeed(speed)
                         .closeFailedAnim()
+                        .setDrawColor(color)
                         .setRepeatCount(repeatTime)
                         .show();
                 h.sendEmptyMessageDelayed(LOAD_WITHOUT_ANIM_FAILED, delayedTime);
@@ -180,6 +186,10 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             case R.id.repeat:
                 repeatTime = repeatTime == 0 ? 1 : 0;
                 Toast.makeText(this, "now the loading callback will be draw:" + (repeatTime + 1) + " times", Toast.LENGTH_SHORT).show();
+                break;
+            case R.id.color:
+                color = color == Color.WHITE ? Color.BLUE : Color.WHITE;
+                Toast.makeText(this, "now the color is:" + color, Toast.LENGTH_SHORT).show();
                 break;
         }
         return true;

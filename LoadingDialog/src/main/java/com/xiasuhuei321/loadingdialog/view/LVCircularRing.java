@@ -8,6 +8,7 @@ import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
 import android.graphics.RectF;
+import android.support.annotation.ColorInt;
 import android.util.AttributeSet;
 import android.view.View;
 import android.view.animation.LinearInterpolator;
@@ -21,6 +22,7 @@ public class LVCircularRing extends View {
     private float mPadding = 0f;
     private float startAngle = 0f;
     private Paint mPaint;
+    private int color = Color.WHITE;
 
     public LVCircularRing(Context context) {
         this(context, null);
@@ -63,7 +65,7 @@ public class LVCircularRing extends View {
         mPaint = new Paint();
         mPaint.setAntiAlias(true);
         mPaint.setStyle(Paint.Style.STROKE);
-        mPaint.setColor(Color.WHITE);
+        mPaint.setColor(color);
         mPaint.setStrokeWidth(8);
     }
 
@@ -113,5 +115,11 @@ public class LVCircularRing extends View {
 
         return valueAnimator;
     }
+
+    public void setColor(@ColorInt int color) {
+        this.color = color;
+    }
 }
+
+
 

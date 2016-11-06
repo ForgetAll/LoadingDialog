@@ -9,4 +9,5 @@
     <string name="load_success_without_anim">load_success_without_anim</string>
     <string name="load_failed_without_anim">load_failed_without_anim</string>
     <string name="repeat_draw">repeat draw</string>
+    <string name="change_color">change color</string>
 </resources>

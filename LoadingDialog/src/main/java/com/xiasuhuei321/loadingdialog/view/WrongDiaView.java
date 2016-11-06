@@ -98,7 +98,11 @@ public class WrongDiaView extends View {
 
     @Override
     protected void onDraw(Canvas canvas) {
-        drawDynamic(canvas);
+        if (drawEveryTime)
+            drawDynamic(canvas);
+        else {
+            drawStatic(canvas);
+        }
     }
 
     private void drawDynamic(Canvas canvas) {
@@ -145,6 +149,18 @@ public class WrongDiaView extends View {
             }
         }
         invalidate();
+    }
+
+    private void drawStatic(Canvas canvas) {
+        canvas.drawArc(rectF, 0, 360, false, mPaint);
+
+        int line1_start = 3 * mWidth / 10;
+        int line2_startX = 7 * mWidth / 10;
+
+        canvas.drawLine(line1_start, line1_start,
+                line1_start + 2 * mWidth / 5, line1_start + 2 * mWidth / 5, mPaint);
+        canvas.drawLine(line1_start + 2 * mWidth / 5, line1_start,
+                line1_start, line1_start + 2 * mWidth / 5, mPaint);
     }
 
     private void reDraw() {

@@ -262,6 +262,8 @@ public class LoadingDialog {
     public LoadingDialog setDrawColor(@ColorInt int color) {
         mFailedView.setDrawColor(color);
         mSuccessView.setDrawColor(color);
+        loadingText.setTextColor(color);
+        mLoadingView.setColor(color);
         return this;
     }
 
@@ -291,5 +293,6 @@ public class LoadingDialog {
         mSuccessView.setRepeatTime(count);
         return this;
     }
+
 
 }
