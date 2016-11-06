@@ -1,7 +1,19 @@
 # LoadingDialog
 
-### 写在前面
-还记得以前在网上看到过一个LoadingDialog，感觉还挺不错的，可惜只有一个Loading，配套的错误和正确的反馈都没，一直觉得挺遗憾的，今天花了一些时间把他补全了。
+### 如何使用
+Step 1. 把这玩意加到你的build.gradle里:
+
+	allprojects {
+		repositories {
+			...
+			maven { url "https://jitpack.io" }
+		}
+	}
+Step 2. 加上这个依赖
+
+	dependencies {
+	        compile 'com.github.ForgetAll:LoadingDialog:v1.0.0'
+	}
 
 ### 使用方法与效果图
 展示一个loading dialog：
@@ -70,4 +82,4 @@ ld.setLoadingText("加载中")
 * setRepeatCount(int count)：设置动态绘制的次数，比如你设置了值为1，那么除了加载的时候绘制一次，还会再绘制一次。如果你有这个需要，可以设置他的重绘次数。
 
 目前还有一些没完善，在后续的更新中搞定吧。
-github地址：https://github.com/ForgetAll/LoadingDialog
+
