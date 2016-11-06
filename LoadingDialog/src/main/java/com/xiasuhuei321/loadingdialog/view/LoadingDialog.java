@@ -2,6 +2,8 @@ package com.xiasuhuei321.loadingdialog.view;
 
 import android.app.Dialog;
 import android.content.Context;
+import android.os.Handler;
+import android.os.Message;
 import android.support.annotation.ColorInt;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -37,6 +39,7 @@ public class LoadingDialog {
     private boolean openSuccessAnim = true;
     private boolean openFailedAnim = true;
     private int speed = 1;
+    private long time = 1000;
 
     public enum Speed {
         SPEED_ONE,
@@ -103,6 +106,13 @@ public class LoadingDialog {
         mFailedView.setLayoutParams(failedParams);
     }
 
+    private Handler h = new Handler() {
+        @Override
+        public void handleMessage(Message msg) {
+            LoadingDialog.this.close();
+        }
+    };
+
 
     //----------------------------------对外提供的api------------------------------//
 
@@ -123,8 +133,7 @@ public class LoadingDialog {
      */
     public void close() {
         viewList.clear();
-        SizeUtils.RightFirst = true;
-        SizeUtils.WrongFirst = true;
+        h.removeCallbacksAndMessages(null);
         if (mLoadingDialog != null) {
             mLoadingView.stopAnim();
             mLoadingDialog.dismiss();
@@ -177,6 +186,7 @@ public class LoadingDialog {
         mSuccessView.setDrawDynamic(openSuccessAnim);
         mSuccessView.setVisibility(View.VISIBLE);
         loadingText.setText(loadSuccessStr);
+        h.sendEmptyMessageDelayed(1, time);
     }
 
     /**
@@ -188,6 +198,7 @@ public class LoadingDialog {
         mFailedView.setDrawDynamic(openFailedAnim);
         mFailedView.setVisibility(View.VISIBLE);
         loadingText.setText(loadFailedStr);
+        h.sendEmptyMessageDelayed(2, time);
     }
 
     /**
@@ -290,6 +301,19 @@ public class LoadingDialog {
     public LoadingDialog setRepeatCount(int count) {
         mFailedView.setRepeatTime(count);
         mSuccessView.setRepeatTime(count);
+        return this;
+    }
+
+    /**
+     * 设置反馈展示时间
+     *
+     * @param time 时间
+     * @return 这个对象
+     */
+    public LoadingDialog setShowTime(long time) {
+        if (time < 0)
+            return this;
+        this.time = time;
         return this;
     }
 
