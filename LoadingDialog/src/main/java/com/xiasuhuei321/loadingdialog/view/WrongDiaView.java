@@ -109,7 +109,7 @@ public class WrongDiaView extends View {
         if (progress < 100)
             progress += speed;
         //根据进度画圆弧
-        canvas.drawArc(rectF, 235, -360 * progress / 100, false, mPaint);
+        canvas.drawArc(rectF, 235, 360 * progress / 100, false, mPaint);
 
         int line1_start = 3 * mWidth / 10;
         int line2_startX = 7 * mWidth / 10;

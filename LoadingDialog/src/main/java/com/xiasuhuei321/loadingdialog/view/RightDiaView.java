@@ -92,7 +92,7 @@ public class RightDiaView extends View {
         if (progress < 100)
             progress += speed;
         //根据进度画圆弧
-        canvas.drawArc(rectF, 235, -360 * progress / 100, false, mPaint);
+        canvas.drawArc(rectF, 235, 360 * progress / 100, false, mPaint);
 
         int center = mWidth / 2;
         int center1 = center - mWidth / 5;
