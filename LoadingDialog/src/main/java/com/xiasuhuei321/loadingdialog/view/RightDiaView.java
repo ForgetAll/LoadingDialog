@@ -16,6 +16,8 @@ import android.view.View;
 public class RightDiaView extends View {
     private final String TAG = this.getClass().getSimpleName();
 
+    private FinishDrawListener listener;
+
     private Context mContext;
     private int mWidth = 0;
     private float mPadding = 0f;
@@ -85,8 +87,12 @@ public class RightDiaView extends View {
             drawDynamic(canvas);
         else {
             drawStatic(canvas);
+            if (listener != null)
+                listener.dispatchFinishEvent(this);
         }
     }
+
+    private int count = 0;
 
     private void drawDynamic(Canvas canvas) {
         if (progress < 100)
@@ -125,6 +131,13 @@ public class RightDiaView extends View {
         }
 
         if (line2_x > radius && progress >= 100 && line1_x != radius / 3) {
+            //1.只分发一次绘制完成的事件
+            //2.只在最后一次绘制时分发
+            if (count == 0 && times == 0 && listener != null) {
+                listener.dispatchFinishEvent(this);
+                count++;
+            }
+
             times--;
             if (times >= 0) {
                 reDraw();
@@ -196,5 +209,8 @@ public class RightDiaView extends View {
         mPaint.setColor(color);
     }
 
+    public void setOnDrawFinishListener(FinishDrawListener f) {
+        this.listener = f;
+    }
 }
 

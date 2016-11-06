@@ -110,6 +110,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                         .setLoadSpeed(speed)
                         .setRepeatCount(repeatTime)
                         .setDrawColor(color)
+                        .setShowTime(5000)//延时5秒自动关闭，默认1秒
                         .show();
                 h.sendEmptyMessageDelayed(LOAD_FAILED, delayedTime);
                 saveForThesePeopleWhoDoNotCallCloseAndUseInterceptBackMethod(intercept_back_event);
@@ -145,6 +146,11 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         }
     }
 
+    /**
+     * 本来是想借此给拦截了back导致无法返回用户界面的情况，给出一种解决方法，
+     * 已写入api中，你可以调用setShowTime()来指定反馈dialog展示的时长（自完全绘制完毕开始计算），
+     * 但是需要注意的是loading界面仍然可能导致用户无法与你的界面交互。
+     */
     private void saveForThesePeopleWhoDoNotCallCloseAndUseInterceptBackMethod(boolean intercept_back_event) {
         if (intercept_back_event) {
             Toast.makeText(this, "don't be worried,this dialog will be closed " +
@@ -170,7 +176,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             case R.id.speed:
                 speed = speed == LoadingDialog.Speed.SPEED_ONE ?
                         LoadingDialog.Speed.SPEED_TWO : LoadingDialog.Speed.SPEED_ONE;
-                int speedInfo = 1;
+                int speedInfo;
                 if (speed == LoadingDialog.Speed.SPEED_ONE) {
                     speedInfo = 1;
                 } else {
@@ -181,14 +187,18 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
             case R.id.intercept:
                 intercept_back_event = !intercept_back_event;
-                Toast.makeText(this, "now the dialog will intercept the back event", Toast.LENGTH_SHORT).show();
+                if (intercept_back_event)
+                    Toast.makeText(this, "now the dialog will intercept the back event", Toast.LENGTH_SHORT).show();
+                else{
+                    Toast.makeText(this, "now the dialog will accept the back event", Toast.LENGTH_SHORT).show();
+                }
                 break;
             case R.id.repeat:
                 repeatTime = repeatTime == 0 ? 1 : 0;
                 Toast.makeText(this, "now the loading callback will be draw:" + (repeatTime + 1) + " times", Toast.LENGTH_SHORT).show();
                 break;
             case R.id.color:
-                color = color == Color.WHITE ? Color.BLUE : Color.WHITE;
+                color = color == Color.argb(100, 255, 255, 255) ? Color.BLUE : Color.argb(100, 255, 255, 255);
                 Toast.makeText(this, "now the color is:" + color, Toast.LENGTH_SHORT).show();
                 break;
         }

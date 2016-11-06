@@ -16,6 +16,8 @@ import android.view.View;
 public class WrongDiaView extends View {
     private final String TAG = this.getClass().getSimpleName();
 
+    private FinishDrawListener listener;
+
     private Context mContext;
     private int mWidth = 0;
     private float mPadding = 0f;
@@ -31,6 +33,7 @@ public class WrongDiaView extends View {
     private int times = 0;
     private boolean drawEveryTime = true;
     private int speed = 1;
+    private int count = 0;
 //    private int color;
 
     public WrongDiaView(Context context) {
@@ -102,6 +105,8 @@ public class WrongDiaView extends View {
             drawDynamic(canvas);
         else {
             drawStatic(canvas);
+            if (listener != null)
+                listener.dispatchFinishEvent(this);
         }
     }
 
@@ -139,6 +144,12 @@ public class WrongDiaView extends View {
                     line2_startX + line2_x, line1_start + line2_y, mPaint);
 
             if ((line2_startX - line2_y) < line1_start) {
+                //1.只分发一次绘制完成的事件
+                //2.只在最后一次绘制时分发
+                if (count == 0 && times == 0 && listener != null) {
+                    listener.dispatchFinishEvent(this);
+                    count++;
+                }
                 times--;
                 if (times >= 0) {
                     reDraw();
@@ -205,5 +216,9 @@ public class WrongDiaView extends View {
 
     protected void setDrawColor(int color) {
         mPaint.setColor(color);
+    }
+
+    public void setOnDrawFinishListener(FinishDrawListener f) {
+        this.listener = f;
     }
 }

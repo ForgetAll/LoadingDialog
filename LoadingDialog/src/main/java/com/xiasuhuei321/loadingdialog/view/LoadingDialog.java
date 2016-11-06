@@ -21,7 +21,7 @@ import java.util.List;
  * Created by Luo on 2016/9/23.
  * desc:加载等待的Dialog
  */
-public class LoadingDialog {
+public class LoadingDialog implements FinishDrawListener {
     private Context mContext;
 
     private LVCircularRing mLoadingView;
@@ -40,6 +40,7 @@ public class LoadingDialog {
     private boolean openFailedAnim = true;
     private int speed = 1;
     private long time = 1000;
+
 
     public enum Speed {
         SPEED_ONE,
@@ -76,6 +77,7 @@ public class LoadingDialog {
         loadingText = (TextView) view.findViewById(R.id.loading_text);
         mSuccessView = (RightDiaView) view.findViewById(R.id.rdv_right);
         mFailedView = (WrongDiaView) view.findViewById(R.id.wv_wrong);
+
         initData();
     }
 
@@ -84,6 +86,18 @@ public class LoadingDialog {
         viewList.add(mLoadingView);
         viewList.add(mSuccessView);
         viewList.add(mFailedView);
+
+        mSuccessView.setOnDrawFinishListener(this);
+        mFailedView.setOnDrawFinishListener(this);
+    }
+
+    @Override
+    public void dispatchFinishEvent(View v) {
+        if (v instanceof WrongDiaView) {
+            h.sendEmptyMessageDelayed(2, time);
+        } else {
+            h.sendEmptyMessageDelayed(1, time);
+        }
     }
 
     private void hideAll() {
@@ -186,7 +200,6 @@ public class LoadingDialog {
         mSuccessView.setDrawDynamic(openSuccessAnim);
         mSuccessView.setVisibility(View.VISIBLE);
         loadingText.setText(loadSuccessStr);
-        h.sendEmptyMessageDelayed(1, time);
     }
 
     /**
@@ -198,7 +211,6 @@ public class LoadingDialog {
         mFailedView.setDrawDynamic(openFailedAnim);
         mFailedView.setVisibility(View.VISIBLE);
         loadingText.setText(loadFailedStr);
-        h.sendEmptyMessageDelayed(2, time);
     }
 
     /**
