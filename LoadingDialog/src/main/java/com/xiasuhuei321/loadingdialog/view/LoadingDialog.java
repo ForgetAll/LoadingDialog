@@ -57,8 +57,7 @@ public class LoadingDialog {
                 if (interceptBack) {
                     return;
                 }
-                mLoadingDialog.cancel();
-
+                LoadingDialog.this.close();
             }
         };
         // 设置返回键无效

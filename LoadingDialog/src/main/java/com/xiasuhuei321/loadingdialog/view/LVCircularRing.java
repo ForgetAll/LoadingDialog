@@ -22,7 +22,8 @@ public class LVCircularRing extends View {
     private float mPadding = 0f;
     private float startAngle = 0f;
     private Paint mPaint;
-    private int color = Color.WHITE;
+    private int color = Color.argb(100, 255, 255, 255);
+    private Paint mPaint2;
 
     public LVCircularRing(Context context) {
         this(context, null);
@@ -52,8 +53,9 @@ public class LVCircularRing extends View {
     protected void onDraw(Canvas canvas) {
         super.onDraw(canvas);
 
-        mPaint.setColor(Color.argb(100, 255, 255, 255));
-        canvas.drawCircle(mWidth / 2, mWidth / 2, mWidth / 2 - mPadding, mPaint);
+//        mPaint.setColor(Color.argb(100, 255, 255, 255));
+        mPaint2.setColor(color);
+        canvas.drawCircle(mWidth / 2, mWidth / 2, mWidth / 2 - mPadding, mPaint2);
         mPaint.setColor(Color.WHITE);
         RectF rectF = new RectF(mPadding, mPadding, mWidth - mPadding, mWidth - mPadding);
         canvas.drawArc(rectF, startAngle, 100
@@ -67,6 +69,12 @@ public class LVCircularRing extends View {
         mPaint.setStyle(Paint.Style.STROKE);
         mPaint.setColor(color);
         mPaint.setStrokeWidth(8);
+
+        mPaint2 = new Paint();
+        mPaint2.setAntiAlias(true);
+        mPaint2.setStyle(Paint.Style.STROKE);
+        mPaint2.setStrokeWidth(8);
+        mPaint2.setColor(color);
     }
 
     public void startAnim() {
@@ -118,6 +126,8 @@ public class LVCircularRing extends View {
 
     public void setColor(@ColorInt int color) {
         this.color = color;
+        mPaint.setColor(color);
+        mPaint2.setColor(color);
     }
 }
 

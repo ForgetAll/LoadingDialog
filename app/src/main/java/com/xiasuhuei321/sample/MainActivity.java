@@ -28,7 +28,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     private long delayedTime = 1000L;
     private int repeatTime = 0;
     private boolean intercept_back_event = false;
-    private int color = Color.WHITE;
+    private int color = Color.argb(100, 255, 255, 255);
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
