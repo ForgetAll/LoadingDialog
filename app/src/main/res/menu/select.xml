@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/delay"
+        android:title="@string/delayedTime" />
+
+    <item
+        android:id="@+id/speed"
+        android:title="@string/change_speed" />
+
+    <item
+        android:id="@+id/intercept"
+        android:title="@string/intercept_back_event" />
+
+    <item
+        android:id="@+id/repeat"
+        android:title="@string/repeat_draw" />
+</menu>

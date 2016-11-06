@@ -1,0 +1,12 @@
+<resources>
+    <string name="app_name">LoadingDialog</string>
+    <string name="delayedTime">set delayedTime = 4s</string>
+    <string name="change_speed">change speed</string>
+    <string name="intercept_back_event">intercept back event</string>
+    <string name="show_loading_dialog">show_loading_dialog</string>
+    <string name="loading_and_success">loading_and_success</string>
+    <string name="load_and_failed">load_and_failed</string>
+    <string name="load_success_without_anim">load_success_without_anim</string>
+    <string name="load_failed_without_anim">load_failed_without_anim</string>
+    <string name="repeat_draw">repeat draw</string>
+</resources>
