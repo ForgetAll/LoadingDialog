@@ -11,6 +11,7 @@ import android.view.View;
 import android.widget.Toast;
 
 import com.xiasuhuei321.loadingdialog.view.LoadingDialog;
+import com.xiasuhuei321.loadingdialog.view.SizeUtils;
 
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
@@ -138,6 +139,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                         .setLoadSpeed(speed)
                         .closeFailedAnim()
                         .setDrawColor(color)
+                        .setSize(SizeUtils.dip2px(this, 100))
                         .setRepeatCount(repeatTime)
                         .show();
                 h.sendEmptyMessageDelayed(LOAD_WITHOUT_ANIM_FAILED, delayedTime);
@@ -170,7 +172,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         switch (item.getItemId()) {
             case R.id.delay:
                 delayedTime = delayedTime == 1000L ? 4000L : 1000L;
-                Toast.makeText(this, "the delayed time now is:" + delayedTime + " ms", Toast.LENGTH_SHORT).show();
+                Toast.makeText(this, "the delayed time now is:" + delayedTime + " ms", Toast.LENGTH_LONG).show();
                 break;
 
             case R.id.speed:
@@ -182,24 +184,24 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 } else {
                     speedInfo = 2;
                 }
-                Toast.makeText(this, "the speed now is:" + speedInfo, Toast.LENGTH_SHORT).show();
+                Toast.makeText(this, "the speed now is:" + speedInfo, Toast.LENGTH_LONG).show();
                 break;
 
             case R.id.intercept:
                 intercept_back_event = !intercept_back_event;
                 if (intercept_back_event)
-                    Toast.makeText(this, "now the dialog will intercept the back event", Toast.LENGTH_SHORT).show();
-                else{
-                    Toast.makeText(this, "now the dialog will accept the back event", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(this, "now the dialog will intercept the back event", Toast.LENGTH_LONG).show();
+                else {
+                    Toast.makeText(this, "now the dialog will accept the back event", Toast.LENGTH_LONG).show();
                 }
                 break;
             case R.id.repeat:
                 repeatTime = repeatTime == 0 ? 1 : 0;
-                Toast.makeText(this, "now the loading callback will be draw:" + (repeatTime + 1) + " times", Toast.LENGTH_SHORT).show();
+                Toast.makeText(this, "now the loading callback will be draw:" + (repeatTime + 1) + " times", Toast.LENGTH_LONG).show();
                 break;
             case R.id.color:
                 color = color == Color.argb(100, 255, 255, 255) ? Color.BLUE : Color.argb(100, 255, 255, 255);
-                Toast.makeText(this, "now the color is:" + color, Toast.LENGTH_SHORT).show();
+                Toast.makeText(this, "now the color is:" + color, Toast.LENGTH_LONG).show();
                 break;
         }
         return true;

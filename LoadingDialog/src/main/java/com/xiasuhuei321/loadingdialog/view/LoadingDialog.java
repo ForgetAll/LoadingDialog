@@ -118,6 +118,10 @@ public class LoadingDialog implements FinishDrawListener {
         failedParams.height = size;
         failedParams.width = size;
         mFailedView.setLayoutParams(failedParams);
+
+        ViewGroup.LayoutParams loadingParams = mLoadingView.getLayoutParams();
+        loadingParams.height = size;
+        loadingParams.width = size;
     }
 
     private Handler h = new Handler() {
