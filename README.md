@@ -43,9 +43,8 @@ ld.loadSuccess();
 ```
 效果图：
 
-![
 ![loadSuccess.gif](http://upload-images.jianshu.io/upload_images/1976147-3af85bae65a0b51d.gif?imageMogr2/auto-orient/strip)
-](http://upload-images.jianshu.io/upload_images/1976147-efca9a1ec133b457.gif?imageMogr2/auto-orient/strip)
+![loadFailed.gif](http://upload-images.jianshu.io/upload_images/1976147-efca9a1ec133b457.gif?imageMogr2/auto-orient/strip)
 
 还是同样的蜜汁小圆点。。。因为不摸他 加载结束他就不录了，辣鸡AS。。。
 
@@ -62,7 +61,6 @@ ld.setLoadingText("加载中")
          .show();
 ```
 ![fail_no_anim.gif](http://upload-images.jianshu.io/upload_images/1976147-ea1a4a0b33393d5d.gif?imageMogr2/auto-orient/strip)
-")
 
 提供你使用的一些方法：
 * setSize(int size)：可以通过这个来设置弹框的尺寸，首先我这要求长宽相等的，所以只给一个参数设置他的尺寸就行了。再者我在自定义View里也会把不同的长宽处理成一样的。在项目中有一个SizeUtils，在设置尺寸的时候注意用这个工具将dp转换成px。
