@@ -75,7 +75,7 @@ ld.setLoadingText("加载中")
 * loadFailed()：调用这个方法展示一个失败的反馈
 * closeSuccessAnim()：关闭成功反馈的动态绘制
 * closeFailedAnim()：关闭失败反馈的动态绘制
-* setInterceptBack(boolean interceptBack)：是否拦截用户back，如果设置为true，那么一定要调用close()，或者loadSuccess()、loadFailed()这二者中的一个，不然出现无限loading的情况我相信你不会想看到的。
+* setInterceptBack(boolean interceptBack)：是否拦截用户back，如果设置为true（默认也为true），那么一定要调用close()，或者loadSuccess()、loadFailed()这二者中的一个，不然出现无限loading的情况我相信你不会想看到的。
 * getInterceptBack()：返回dialog是否拦截的布尔值
 * setLoadSpeed(Speed speed)：参数是一个枚举，一共两个值，SPEED_ONE是比较慢的，SPEED_TWO比前一个快一点，为毛不再加？处理起来比较麻烦...
 * setDrawColor(int color)：可以改变绘制的颜色，圆和里面的勾啊，叉啊的颜色，不建议你用，不一定好看。
