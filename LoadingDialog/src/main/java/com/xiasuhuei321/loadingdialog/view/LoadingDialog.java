@@ -40,7 +40,8 @@ public class LoadingDialog implements FinishDrawListener {
     private boolean openFailedAnim = true;
     private int speed = 1;
     private long time = 1000;
-
+    //用于向用户传递绘制完毕的事件
+    private FinishDrawListener f;
 
     public enum Speed {
         SPEED_ONE,
@@ -93,6 +94,8 @@ public class LoadingDialog implements FinishDrawListener {
 
     @Override
     public void dispatchFinishEvent(View v) {
+        if (f != null)
+            f.dispatchFinishEvent(v);
         if (v instanceof WrongDiaView) {
             h.sendEmptyMessageDelayed(2, time);
         } else {
@@ -333,5 +336,18 @@ public class LoadingDialog implements FinishDrawListener {
         return this;
     }
 
+    /**
+     * 注册此listener可以在动态绘制绘制完毕时收到通知
+     *
+     * @param f {@link com.xiasuhuei321.loadingdialog.view.FinishDrawListener}
+     *          接口回调
+     */
+    public void setFinishDrawListener(FinishDrawListener f) {
+        this.f = f;
+    }
+
+    public void setTextSize(float size) {
+        loadingText.setTextSize(size);
+    }
 
 }
