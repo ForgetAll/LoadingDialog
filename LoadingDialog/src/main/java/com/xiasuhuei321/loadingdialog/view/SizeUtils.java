@@ -24,7 +24,20 @@ public class SizeUtils {
         return (int) (pxValue / scale + 0.5f);
     }
 
-    static boolean RightFirst = true;
+    /**
+     * px转sp
+     */
+    public static int px2sp(Context context, float spValue) {
+        final float fontScale = context.getResources().getDisplayMetrics().scaledDensity;
+        return (int) (spValue / fontScale + 0.5f);
+    }
 
-    static boolean WrongFirst = true;
+    /**
+     * sp转px
+     */
+    public static int sp2px(Context context, float spValue) {
+        final float fontScale = context.getResources().getDisplayMetrics().scaledDensity;
+        return (int) (spValue * fontScale + 0.5f);
+    }
+
 }

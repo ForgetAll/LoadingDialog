@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_margin="@dimen/activity_horizontal_margin"
+    android:gravity="center"
+    android:orientation="vertical">
+
+    <Button
+        android:id="@+id/btn_show1"
+        android:layout_weight="1"
+        android:text="@string/load_with_no_config"
+        android:layout_width="match_parent"
+        android:layout_height="0dp" />
+
+</LinearLayout>

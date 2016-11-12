@@ -5,6 +5,8 @@ import android.content.Context;
 import android.os.Handler;
 import android.os.Message;
 import android.support.annotation.ColorInt;
+import android.support.annotation.Dimension;
+import android.util.TypedValue;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -12,6 +14,7 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.xiasuhuei321.loadingdialog.R;
+import com.xiasuhuei321.loadingdialog.manager.StyleManager;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -41,6 +44,8 @@ public class LoadingDialog implements FinishDrawListener {
     private int speed = 1;
     private long time = 1000;
 
+    private static StyleManager s = new StyleManager(true, 0, Speed.SPEED_TWO, -1, -1, 1000L,
+            true, "加载中...", "加载成功", "加载失败");
 
     public enum Speed {
         SPEED_ONE,
@@ -69,6 +74,7 @@ public class LoadingDialog implements FinishDrawListener {
         mLoadingDialog.setContentView(layout, new LinearLayout.LayoutParams(
                 LinearLayout.LayoutParams.MATCH_PARENT,
                 LinearLayout.LayoutParams.MATCH_PARENT));
+        initStyle();
     }
 
     private void initView(View view) {
@@ -77,7 +83,6 @@ public class LoadingDialog implements FinishDrawListener {
         loadingText = (TextView) view.findViewById(R.id.loading_text);
         mSuccessView = (RightDiaView) view.findViewById(R.id.rdv_right);
         mFailedView = (WrongDiaView) view.findViewById(R.id.wv_wrong);
-
         initData();
     }
 
@@ -109,6 +114,7 @@ public class LoadingDialog implements FinishDrawListener {
     }
 
     private void setParams(int size) {
+        if (size < 0) return;
         ViewGroup.LayoutParams successParams = mSuccessView.getLayoutParams();
         successParams.height = size;
         successParams.width = size;
@@ -131,6 +137,23 @@ public class LoadingDialog implements FinishDrawListener {
         }
     };
 
+
+    private void initStyle() {
+        if (s != null) {
+            setInterceptBack(s.isInterceptBack());
+            setRepeatCount(s.getRepeatTime());
+            setParams(s.getContentSize());
+            setTextSize(s.getTextSize());
+            setShowTime(s.getShowTime());
+            if (!s.isOpenAnim()) {
+                closeFailedAnim();
+                closeSuccessAnim();
+            }
+            setLoadingText(s.getLoadText());
+            setSuccessText(s.getSuccessText());
+            setFailedText(s.getFailedText());
+        }
+    }
 
     //----------------------------------对外提供的api------------------------------//
 
@@ -190,8 +213,7 @@ public class LoadingDialog implements FinishDrawListener {
      * @return 这个对象
      */
     public LoadingDialog setFailedText(String msg) {
-        if (msg != null && msg.length() > 0)
-            loadFailedStr = msg;
+        if (msg != null && msg.length() > 0) loadFailedStr = msg;
         return this;
     }
 
@@ -296,13 +318,12 @@ public class LoadingDialog implements FinishDrawListener {
     /**
      * 设置中间弹框的尺寸
      *
-     * @param size 尺寸
+     * @param size 尺寸，单位px
      * @return 这个对象
      */
     public LoadingDialog setSize(int size) {
-        int dip = SizeUtils.px2dip(mContext, size);
-        if (dip <= 50)
-            return this;
+//        int dip = SizeUtils.px2dip(mContext, size);
+        if (size <= 50) return this;
         setParams(size);
         return this;
     }
@@ -327,10 +348,27 @@ public class LoadingDialog implements FinishDrawListener {
      * @return 这个对象
      */
     public LoadingDialog setShowTime(long time) {
-        if (time < 0)
-            return this;
+        if (time < 0) return this;
         this.time = time;
         return this;
+    }
+
+    /**
+     * 设置加载字体大小
+     *
+     * @param size 尺寸，单位sp
+     *             来将sp转换为对应的px值
+     * @return 这个对象
+     */
+    public LoadingDialog setTextSize(float size) {
+        if (size < 0) return this;
+        loadingText.setTextSize(TypedValue.COMPLEX_UNIT_SP, size);
+        return this;
+    }
+
+    public static void initStyle(StyleManager style) {
+        if (style != null)
+            s = style;
     }
 
 

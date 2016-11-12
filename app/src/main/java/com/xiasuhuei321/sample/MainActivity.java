@@ -1,5 +1,6 @@
 package com.xiasuhuei321.sample;
 
+import android.content.Intent;
 import android.graphics.Color;
 import android.os.Handler;
 import android.os.Message;
@@ -12,6 +13,11 @@ import android.widget.Toast;
 
 import com.xiasuhuei321.loadingdialog.view.LoadingDialog;
 import com.xiasuhuei321.loadingdialog.view.SizeUtils;
+
+import java.util.concurrent.TimeUnit;
+
+import rx.Observable;
+import rx.Subscriber;
 
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
@@ -44,6 +50,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         findViewById(R.id.btn3).setOnClickListener(this);
         findViewById(R.id.btn4).setOnClickListener(this);
         findViewById(R.id.btn5).setOnClickListener(this);
+        findViewById(R.id.btn6).setOnClickListener(this);
+        findViewById(R.id.btn7).setOnClickListener(this);
     }
 
     @SuppressWarnings("all")
@@ -145,6 +153,14 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 h.sendEmptyMessageDelayed(LOAD_WITHOUT_ANIM_FAILED, delayedTime);
                 saveForThesePeopleWhoDoNotCallCloseAndUseInterceptBackMethod(intercept_back_event);
                 break;
+
+            case R.id.btn6:
+                testRx();
+                break;
+
+            case R.id.btn7:
+                startActivity(new Intent(this, SampleActivity.class));
+                break;
         }
     }
 
@@ -205,5 +221,29 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 break;
         }
         return true;
+    }
+
+    private void testRx() {
+        Observable.just("test after 2 seconds")
+                .delay(2, TimeUnit.SECONDS)
+                .compose(new RequestTransformer<>(this))
+//                .compose(new RequestTransformer<>(new RxLoadingDialog<>(this).subscribe()))
+//                .subscribe(System.out::println);
+                .subscribe(new Subscriber<Object>() {
+                    @Override
+                    public void onCompleted() {
+
+                    }
+
+                    @Override
+                    public void onError(Throwable e) {
+                        e.printStackTrace();
+                    }
+
+                    @Override
+                    public void onNext(Object s) {
+                        System.out.println((String) s);
+                    }
+                });
     }
 }

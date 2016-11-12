@@ -10,4 +10,7 @@
     <string name="load_failed_without_anim">load_failed_without_anim</string>
     <string name="repeat_draw">repeat draw</string>
     <string name="change_color">change color</string>
+    <string name="rx_dialog">Rx_Dialog</string>
+    <string name="jump_to_another_activity">Jump_To_Another_Activity</string>
+    <string name="load_with_no_config">load_with_no_config</string>
 </resources>

@@ -42,5 +42,19 @@
         android:layout_marginTop="20dp"
         android:text="@string/load_failed_without_anim" />
 
+    <Button
+        android:id="@+id/btn6"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:text="@string/rx_dialog" />
+
+    <Button
+        android:id="@+id/btn7"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:text="@string/jump_to_another_activity" />
+
 
 </LinearLayout>
