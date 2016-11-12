@@ -12,7 +12,7 @@ Step 1. 把这玩意加到你的build.gradle里:
 Step 2. 加上这个依赖
 
 	dependencies {
-	        compile 'com.github.ForgetAll:LoadingDialog:v1.0.0'
+	        compile 'com.github.ForgetAll:LoadingDialog:v1.0.1'
 	}
 
 ### 使用方法与效果图
@@ -43,9 +43,8 @@ ld.loadSuccess();
 ```
 效果图：
 
-![
-![loadSuccess.gif](http://upload-images.jianshu.io/upload_images/1976147-3af85bae65a0b51d.gif?imageMogr2/auto-orient/strip)
-](http://upload-images.jianshu.io/upload_images/1976147-efca9a1ec133b457.gif?imageMogr2/auto-orient/strip)
+![loadSuccess.gif](https://github.com/ForgetAll/LoadingDialog/blob/master/screen/loadSuccess.gif)
+![loadFailed.gif](https://github.com/ForgetAll/LoadingDialog/blob/master/screen/loadFailed.gif)
 
 还是同样的蜜汁小圆点。。。因为不摸他 加载结束他就不录了，辣鸡AS。。。
 
@@ -61,11 +60,10 @@ ld.setLoadingText("加载中")
          .setRepeatCount(repeatTime)
          .show();
 ```
-![fail_no_anim.gif](http://upload-images.jianshu.io/upload_images/1976147-ea1a4a0b33393d5d.gif?imageMogr2/auto-orient/strip)
-")
+![fail_no_anim.gif](https://github.com/ForgetAll/LoadingDialog/blob/master/screen/fail_no_anim.gif)
 
 提供你使用的一些方法：
-* * setSize(int size)：可以通过这个来设置弹框的尺寸，首先我这要求长宽相等的，所以只给一个参数设置他的尺寸就行了。再者我在自定义View里也会把不同的长宽处理成一样的。
+* setSize(int size)：可以通过这个来设置弹框的尺寸，首先我这要求长宽相等的，所以只给一个参数设置他的尺寸就行了。再者我在自定义View里也会把不同的长宽处理成一样的。在项目中有一个SizeUtils，在设置尺寸的时候注意用这个工具将dp转换成px。
 * show()：展示你设置的loadingDialog
 * close()：关闭动画释放一些资源
 * setLoadingText(String msg)：设置Loading时的文字
@@ -75,7 +73,7 @@ ld.setLoadingText("加载中")
 * loadFailed()：调用这个方法展示一个失败的反馈
 * closeSuccessAnim()：关闭成功反馈的动态绘制
 * closeFailedAnim()：关闭失败反馈的动态绘制
-* setInterceptBack(boolean interceptBack)：是否拦截用户back，如果设置为true，那么一定要调用close()，或者loadSuccess()、loadFailed()这二者中的一个，不然出现无限loading的情况我相信你不会想看到的。
+* setInterceptBack(boolean interceptBack)：是否拦截用户back，如果设置为true（默认也为true），那么一定要调用close()，或者loadSuccess()、loadFailed()这二者中的一个，不然出现无限loading的情况我相信你不会想看到的。
 * getInterceptBack()：返回dialog是否拦截的布尔值
 * setLoadSpeed(Speed speed)：参数是一个枚举，一共两个值，SPEED_ONE是比较慢的，SPEED_TWO比前一个快一点，为毛不再加？处理起来比较麻烦...
 * setDrawColor(int color)：可以改变绘制的颜色，圆和里面的勾啊，叉啊的颜色，不建议你用，不一定好看。
