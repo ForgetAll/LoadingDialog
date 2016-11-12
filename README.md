@@ -12,10 +12,24 @@ Step 1. 把这玩意加到你的build.gradle里:
 Step 2. 加上这个依赖
 
 	dependencies {
-	        compile 'com.github.ForgetAll:LoadingDialog:v1.0.1'
+	        compile 'com.github.ForgetAll:LoadingDialog:v1.0.2'
 	}
 
 ### 使用方法与效果图
+如何设置默认的样式，并使之影响全局：
+提供了一个StyleManager类，通过提供的方法设置一些属性，请在application里进行这个初始化工作：
+```java
+StyleManager s = new StyleManager();
+
+//在这里调用方法设置s的属性
+//code here...
+s.Anim(false).repeatTime(1).contentSize(-1).intercept(true);
+
+LoadingDialog.initStyle(s);
+```
+更多的属性设置可以参考类->[StyleManager](https://github.com/ForgetAll/LoadingDialog/blob/master/LoadingDialog/src/main/java/com/xiasuhuei321/loadingdialog/manager/StyleManager.java)
+
+
 展示一个loading dialog：
 ```java
 new LoadingDialog(this)
