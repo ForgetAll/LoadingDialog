@@ -76,6 +76,9 @@ ld.setLoadingText("加载中")
 ```
 ![fail_no_anim.gif](https://github.com/ForgetAll/LoadingDialog/blob/master/screen/fail_no_anim.gif)
 
+### 如何与Rx搭配使用？
+项目的sample里有一个使用Rx的例子，各位可以参考一下，这个例子来自于热心的前辈——(猫哥)[http://blog.csdn.net/neverwoods/article/category/6368309]， 感谢猫哥对于我的大力支持~还有[越越](http://www.jianshu.com/users/8c4757fd3c5e/latest_articles)的一些建议，恩，感觉还有一些事没做完，留在以后的版本吧~（flag已立）
+
 提供你使用的一些方法：
 * setSize(int size)：可以通过这个来设置弹框的尺寸，首先我这要求长宽相等的，所以只给一个参数设置他的尺寸就行了。再者我在自定义View里也会把不同的长宽处理成一样的。在项目中有一个SizeUtils，在设置尺寸的时候注意用这个工具将dp转换成px。
 * show()：展示你设置的loadingDialog
