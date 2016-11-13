@@ -18,7 +18,7 @@ public class SampleApplication extends Application {
 
         //在这里调用方法设置s的属性
         //code here...
-        s.Anim(false).repeatTime(1).contentSize(-1).intercept(true);
+        s.Anim(false).repeatTime(0).contentSize(-1).intercept(true);
 
         LoadingDialog.initStyle(s);
     }
