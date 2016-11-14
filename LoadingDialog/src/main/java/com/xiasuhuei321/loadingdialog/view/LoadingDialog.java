@@ -5,6 +5,7 @@ import android.content.Context;
 import android.os.Handler;
 import android.os.Message;
 import android.support.annotation.ColorInt;
+import android.util.TypedValue;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -12,6 +13,7 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.xiasuhuei321.loadingdialog.R;
+import com.xiasuhuei321.loadingdialog.manager.StyleManager;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -366,10 +368,6 @@ public class LoadingDialog implements FinishDrawListener {
     public static void initStyle(StyleManager style) {
         if (style != null)
             s = style;
-    }
-
-    public void setTextSize(float size) {
-        loadingText.setTextSize(size);
     }
 
 }
