@@ -1,5 +1,7 @@
 # LoadingDialog
 
+[![](https://jitpack.io/v/ForgetAll/LoadingDialog.svg)](https://jitpack.io/#ForgetAll/LoadingDialog)
+
 ### 如何使用
 Step 1. 把这玩意加到你的build.gradle里:
 
@@ -12,10 +14,10 @@ Step 1. 把这玩意加到你的build.gradle里:
 Step 2. 加上这个依赖
 
 	dependencies {
-	        compile 'com.github.ForgetAll:LoadingDialog:v1.0.1'
+	        compile 'com.github.ForgetAll:LoadingDialog:v1.0.3'
 	}
 
-PS:目前v1.0.2发布出了点问题，有空去解决下，所以最新可用的还是v1.0.1。
+
 
 ### 使用方法与效果图
 如何设置默认的样式，并使之影响全局：
