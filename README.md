@@ -105,7 +105,7 @@ ld.setLoadingText("加载中")
 
 
 # License
-Copyright 2015 xiasuhuei321
+Copyright 2016 xiasuhuei321
 
 Licensed under the Apache License, Version 2.0 (the "License");
 you may not use this file except in compliance with the License.
