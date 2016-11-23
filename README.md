@@ -14,7 +14,7 @@ Step 1. 把这玩意加到你的build.gradle里:
 Step 2. 加上这个依赖
 
 	dependencies {
-	        compile 'com.github.ForgetAll:LoadingDialog:v1.0.3'
+	        compile 'com.github.ForgetAll:LoadingDialog:v1.0.4'
 	}
 
 
