@@ -11,6 +11,7 @@ import android.view.View;
 /**
  * Created by Luo_xiasuhuei321@163.com on 2016/11/5.
  * desc:
+ * TODO: 目前这个对勾还有点问题，在下个版本发布之前解决这个问题！问题在两条线的交点
  */
 
 public class RightDiaView extends View {

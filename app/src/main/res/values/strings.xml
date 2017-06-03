@@ -13,4 +13,5 @@
     <string name="rx_dialog">Rx_Dialog</string>
     <string name="jump_to_another_activity">Jump_To_Another_Activity</string>
     <string name="load_with_no_config">load_with_no_config</string>
+    <string name="change_style">change_style</string>
 </resources>

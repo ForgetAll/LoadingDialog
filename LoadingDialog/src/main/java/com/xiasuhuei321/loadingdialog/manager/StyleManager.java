@@ -27,6 +27,22 @@ public class StyleManager {
 
     }
 
+    public StyleManager(boolean open, int repeatTime, LoadingDialog.Speed speed,
+                        int contentSize, int textSize, long showTime, boolean interceptBack,
+                        String loadText, String successText, String failedText,int loadStyle) {
+        this.openAnim = open;
+        this.repeatTime = repeatTime;
+        this.speed = speed;
+        this.contentSize = contentSize;
+        this.textSize = textSize;
+        this.showTime = showTime;
+        this.interceptBack = interceptBack;
+        this.loadText = loadText;
+        this.successText = successText;
+        this.failedText = failedText;
+        this.loadStyle = loadStyle;
+    }
+
     /**
      * 是否开启绘制
      */
@@ -61,6 +77,17 @@ public class StyleManager {
     private String successText = "加载成功";
 
     private String failedText = "加载失败";
+
+    private int loadStyle = LoadingDialog.STYLE_RING;
+
+    public StyleManager setLoadStyle(int loadStyle) {
+        this.loadStyle = loadStyle;
+        return this;
+    }
+
+    public int getLoadStyle() {
+        return loadStyle;
+    }
 
     public boolean isOpenAnim() {
         return openAnim;

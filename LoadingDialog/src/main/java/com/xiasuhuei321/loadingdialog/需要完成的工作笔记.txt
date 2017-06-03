@@ -1,0 +1,3 @@
+## 更新工作笔记
+* 一个类似于SwipeRefreshLayout的loading
+* 一个类似于很多应用下拉刷新的的进度条(比如XRecyclerView默认的那个loading)

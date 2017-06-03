@@ -19,5 +19,9 @@
 
     <item
         android:id="@+id/color"
-        android:title="@string/change_color"/>
+        android:title="@string/change_color" />
+
+    <item
+        android:id="@+id/style"
+        android:title="@string/change_style" />
 </menu>

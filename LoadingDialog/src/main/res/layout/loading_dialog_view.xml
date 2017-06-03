@@ -11,7 +11,14 @@
     <com.xiasuhuei321.loadingdialog.view.LVCircularRing
         android:id="@+id/lv_circularring"
         android:layout_width="50dp"
-        android:layout_height="50dp" />
+        android:layout_height="50dp"
+        android:visibility="gone" />
+
+    <com.xiasuhuei321.loadingdialog.view.LoadCircleView
+        android:id="@+id/lcv_circleload"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:visibility="visible" />
 
     <com.xiasuhuei321.loadingdialog.view.RightDiaView
         android:id="@+id/rdv_right"

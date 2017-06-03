@@ -10,6 +10,7 @@ import android.graphics.Paint;
 import android.graphics.RectF;
 import android.support.annotation.ColorInt;
 import android.util.AttributeSet;
+import android.util.Log;
 import android.view.View;
 import android.view.animation.LinearInterpolator;
 
@@ -18,6 +19,7 @@ import android.view.animation.LinearInterpolator;
  * desc:
  */
 public class LVCircularRing extends View {
+    public final String TAG = getClass().getSimpleName();
     private float mWidth = 0f;
     private float mPadding = 0f;
     private float startAngle = 0f;

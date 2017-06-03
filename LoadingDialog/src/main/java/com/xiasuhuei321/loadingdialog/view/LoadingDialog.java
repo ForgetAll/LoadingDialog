@@ -24,6 +24,9 @@ import java.util.List;
  * desc:加载等待的Dialog
  */
 public class LoadingDialog implements FinishDrawListener {
+    public final String TAG = "LoadingDialog";
+    public static final int STYLE_RING = 0;
+    public static final int STYLE_LINE = 1;
     private Context mContext;
 
     private LVCircularRing mLoadingView;
@@ -42,14 +45,18 @@ public class LoadingDialog implements FinishDrawListener {
     private boolean openFailedAnim = true;
     private int speed = 1;
     private long time = 1000;
+    private int loadStyle = STYLE_RING;
 
     private static StyleManager s = new StyleManager(true, 0, Speed.SPEED_TWO, -1, -1, 1000L,
             true, "加载中...", "加载成功", "加载失败");
+    private LoadCircleView mCircleLoadView;
 
     public enum Speed {
         SPEED_ONE,
         SPEED_TWO
     }
+
+    private OnFinshListener o;
 
     public LoadingDialog(Context context) {
         mContext = context;
@@ -82,6 +89,7 @@ public class LoadingDialog implements FinishDrawListener {
         loadingText = (TextView) view.findViewById(R.id.loading_text);
         mSuccessView = (RightDiaView) view.findViewById(R.id.rdv_right);
         mFailedView = (WrongDiaView) view.findViewById(R.id.wv_wrong);
+        mCircleLoadView = (LoadCircleView) view.findViewById(R.id.lcv_circleload);
         initData();
     }
 
@@ -90,6 +98,7 @@ public class LoadingDialog implements FinishDrawListener {
         viewList.add(mLoadingView);
         viewList.add(mSuccessView);
         viewList.add(mFailedView);
+        viewList.add(mCircleLoadView);
 
         mSuccessView.setOnDrawFinishListener(this);
         mFailedView.setOnDrawFinishListener(this);
@@ -133,6 +142,7 @@ public class LoadingDialog implements FinishDrawListener {
         @Override
         public void handleMessage(Message msg) {
             LoadingDialog.this.close();
+            if (o != null) o.onFinish();
         }
     };
 
@@ -151,6 +161,7 @@ public class LoadingDialog implements FinishDrawListener {
             setLoadingText(s.getLoadText());
             setSuccessText(s.getSuccessText());
             setFailedText(s.getFailedText());
+            setLoadStyle(s.getLoadStyle());
         }
     }
 
@@ -161,9 +172,23 @@ public class LoadingDialog implements FinishDrawListener {
      */
     public void show() {
         hideAll();
-        mLoadingView.setVisibility(View.VISIBLE);
-        mLoadingDialog.show();
-        mLoadingView.startAnim();
+        if (loadStyle == STYLE_RING) {
+            mLoadingView.setVisibility(View.VISIBLE);
+            mCircleLoadView.setVisibility(View.GONE);
+            mLoadingDialog.show();
+            mLoadingView.startAnim();
+        } else if(loadStyle == STYLE_LINE) {
+            mCircleLoadView.setVisibility(View.VISIBLE);
+            mLoadingView.setVisibility(View.GONE);
+            mLoadingDialog.show();
+        }
+    }
+
+    public void setLoadStyle(int style) {
+        if (style >= 3) {
+            throw new IllegalArgumentException("Your style is wrong!");
+        }
+        this.loadStyle = style;
     }
 
     /**
@@ -369,5 +394,22 @@ public class LoadingDialog implements FinishDrawListener {
         if (style != null)
             s = style;
     }
+
+    /**
+     * 传递绘制完成的事件
+     *
+     * @param o 回调接口
+     */
+    public void setOnFinishListener(OnFinshListener o) {
+        this.o = o;
+    }
+
+    /**
+     * 监听器
+     */
+    public interface OnFinshListener {
+        void onFinish();
+    }
+
 
 }

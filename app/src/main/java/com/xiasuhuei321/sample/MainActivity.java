@@ -42,6 +42,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         initView();
+//        startActivity(new Intent(this,TempActivity.class));
     }
 
     private void initView() {
@@ -218,6 +219,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             case R.id.color:
                 color = color == Color.argb(100, 255, 255, 255) ? Color.BLUE : Color.argb(100, 255, 255, 255);
                 Toast.makeText(this, "now the color is:" + color, Toast.LENGTH_LONG).show();
+                break;
+            case R.id.style:
+
                 break;
         }
         return true;
