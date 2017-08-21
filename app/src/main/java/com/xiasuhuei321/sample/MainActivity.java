@@ -35,7 +35,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     private long delayedTime = 1000L;
     private int repeatTime = 0;
     private boolean intercept_back_event = false;
-    private int color = Color.argb(100, 255, 255, 255);
+    private int color = Color.argb(255, 255, 255, 255);
+    private int style = LoadingDialog.STYLE_LINE;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -94,8 +95,12 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             case R.id.btn1:
                 ld = new LoadingDialog(this);
                 ld.setInterceptBack(intercept_back_event)
-                        .setLoadingText("加载中...");
-                h.sendEmptyMessage(LOADING);
+                        .setLoadingText("加载中...")
+                        .setLoadStyle(style)
+                        .show();
+
+//                h.sendEmptyMessage(LOADING);
+
                 saveForThesePeopleWhoDoNotCallCloseAndUseInterceptBackMethod(intercept_back_event);
                 break;
 
@@ -106,7 +111,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                         .setInterceptBack(intercept_back_event)
                         .setLoadSpeed(speed)
                         .setRepeatCount(repeatTime)
-                        .setDrawColor(color)
+//                        .setDrawColor(color)
+                        .setLoadStyle(style)
                         .show();
                 h.sendEmptyMessageDelayed(LOAD_SUCCESS, delayedTime);
                 saveForThesePeopleWhoDoNotCallCloseAndUseInterceptBackMethod(intercept_back_event);
@@ -119,8 +125,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                         .setInterceptBack(intercept_back_event)
                         .setLoadSpeed(speed)
                         .setRepeatCount(repeatTime)
-                        .setDrawColor(color)
+//                        .setDrawColor(color)
                         .setShowTime(5000)//延时5秒自动关闭，默认1秒
+                        .setLoadStyle(style)
                         .show();
                 h.sendEmptyMessageDelayed(LOAD_FAILED, delayedTime);
                 saveForThesePeopleWhoDoNotCallCloseAndUseInterceptBackMethod(intercept_back_event);
@@ -133,8 +140,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                         .setInterceptBack(intercept_back_event)
                         .setLoadSpeed(speed)
                         .closeSuccessAnim()
-                        .setDrawColor(color)
+//                        .setDrawColor(color)
                         .setRepeatCount(repeatTime)
+                        .setLoadStyle(style)
                         .show();
                 h.sendEmptyMessageDelayed(LOAD_WITHOUT_ANIM_SUCCESS, delayedTime);
                 saveForThesePeopleWhoDoNotCallCloseAndUseInterceptBackMethod(intercept_back_event);
@@ -147,9 +155,10 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                         .setInterceptBack(intercept_back_event)
                         .setLoadSpeed(speed)
                         .closeFailedAnim()
-                        .setDrawColor(color)
+//                        .setDrawColor(color)
                         .setSize(SizeUtils.dip2px(this, 100))
                         .setRepeatCount(repeatTime)
+                        .setLoadStyle(style)
                         .show();
                 h.sendEmptyMessageDelayed(LOAD_WITHOUT_ANIM_FAILED, delayedTime);
                 saveForThesePeopleWhoDoNotCallCloseAndUseInterceptBackMethod(intercept_back_event);
@@ -217,11 +226,12 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 Toast.makeText(this, "now the loading callback will be draw:" + (repeatTime + 1) + " times", Toast.LENGTH_LONG).show();
                 break;
             case R.id.color:
-                color = color == Color.argb(100, 255, 255, 255) ? Color.BLUE : Color.argb(100, 255, 255, 255);
+                color = color == Color.argb(255, 255, 255, 255) ? Color.BLUE : Color.argb(255, 255, 255, 255);
                 Toast.makeText(this, "now the color is:" + color, Toast.LENGTH_LONG).show();
                 break;
             case R.id.style:
-
+                style = style == LoadingDialog.STYLE_LINE ? LoadingDialog.STYLE_RING : LoadingDialog.STYLE_LINE;
+                Toast.makeText(this, "now the style is changed", Toast.LENGTH_SHORT).show();
                 break;
         }
         return true;

@@ -72,8 +72,8 @@ public class LoadCircleView extends View {
     @Override
     protected void onDraw(Canvas canvas) {
         // 圆心坐标 (center,center)
-        int center = mWidth / 2;
-        int radius = mWidth / 2 - 8;
+        int center = mWidth >> 1;
+        int radius = (mWidth >> 1) - 8;
         if (currentLineIndex >= 12)
             currentLineIndex = 0;
 //        canvas.rotate(currentLineIndex * 30, center, center);

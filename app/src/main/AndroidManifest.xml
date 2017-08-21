@@ -21,7 +21,8 @@
         <activity
             android:name=".SampleActivity"
             android:screenOrientation="portrait" />
-        <activity android:name=".TempActivity" />
+        <activity android:name=".TempActivity"
+            android:screenOrientation="portrait"/>
     </application>
 
 </manifest>

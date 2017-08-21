@@ -2,9 +2,11 @@ package com.xiasuhuei321.loadingdialog.view;
 
 import android.app.Dialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.os.Handler;
 import android.os.Message;
 import android.support.annotation.ColorInt;
+import android.util.Log;
 import android.util.TypedValue;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -80,6 +82,12 @@ public class LoadingDialog implements FinishDrawListener {
         mLoadingDialog.setContentView(layout, new LinearLayout.LayoutParams(
                 LinearLayout.LayoutParams.MATCH_PARENT,
                 LinearLayout.LayoutParams.MATCH_PARENT));
+        mLoadingDialog.setOnDismissListener(new DialogInterface.OnDismissListener() {
+            @Override
+            public void onDismiss(DialogInterface dialog) {
+                mContext = null;
+            }
+        });
         initStyle();
     }
 
@@ -168,6 +176,8 @@ public class LoadingDialog implements FinishDrawListener {
     //----------------------------------对外提供的api------------------------------//
 
     /**
+     * please invoke show() method at last,because it's
+     * return value is void
      * 请在最后调用show，因此show返回值为void会使链式api断开
      */
     public void show() {
@@ -177,18 +187,27 @@ public class LoadingDialog implements FinishDrawListener {
             mCircleLoadView.setVisibility(View.GONE);
             mLoadingDialog.show();
             mLoadingView.startAnim();
-        } else if(loadStyle == STYLE_LINE) {
+            Log.e("show", "style_ring");
+        } else if (loadStyle == STYLE_LINE) {
             mCircleLoadView.setVisibility(View.VISIBLE);
             mLoadingView.setVisibility(View.GONE);
             mLoadingDialog.show();
+            Log.e("show", "style_line");
         }
     }
 
-    public void setLoadStyle(int style) {
+    /**
+     * set load style
+     * 设置load的样式，目前支持转圈圈和菊花转圈圈
+     *
+     * @param style
+     */
+    public LoadingDialog setLoadStyle(int style) {
         if (style >= 3) {
             throw new IllegalArgumentException("Your style is wrong!");
         }
         this.loadStyle = style;
+        return this;
     }
 
     /**
@@ -242,6 +261,8 @@ public class LoadingDialog implements FinishDrawListener {
     }
 
     /**
+     * when you need a successful feedback,please invoke
+     * this method in success's callback
      * 当你需要一个成功的反馈的时候，在加载成功的回调中调用此方法
      */
     public void loadSuccess() {
@@ -253,6 +274,8 @@ public class LoadingDialog implements FinishDrawListener {
     }
 
     /**
+     * when you need a fail feedback,please invoke this
+     * method in failed callback
      * 当你需要一个失败的反馈的时候，在加载失败的回调中调用此方法
      */
     public void loadFailed() {
@@ -329,9 +352,10 @@ public class LoadingDialog implements FinishDrawListener {
     }
 
     /**
-     * 此方法改变成功失败绘制的颜色
+     * 此方法改变成功失败绘制的颜色，此方法增加了处理的复杂性，暂时不公开此方法。
+     * 而且暂时没有做到方便调用，真的要用的话十分的麻烦，暂时隐藏，后续不确定是否公开。
      */
-    public LoadingDialog setDrawColor(@ColorInt int color) {
+    private LoadingDialog setDrawColor(@ColorInt int color) {
         mFailedView.setDrawColor(color);
         mSuccessView.setDrawColor(color);
         loadingText.setTextColor(color);
@@ -378,10 +402,10 @@ public class LoadingDialog implements FinishDrawListener {
     }
 
     /**
+     * set the size of load text size
      * 设置加载字体大小
      *
-     * @param size 尺寸，单位sp
-     *             来将sp转换为对应的px值
+     * @param size 尺寸，单位sp，来将sp转换为对应的px值
      * @return 这个对象
      */
     public LoadingDialog setTextSize(float size) {
@@ -396,6 +420,7 @@ public class LoadingDialog implements FinishDrawListener {
     }
 
     /**
+     * dispatch the event when draw finish
      * 传递绘制完成的事件
      *
      * @param o 回调接口
