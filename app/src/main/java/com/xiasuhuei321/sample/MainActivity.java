@@ -2,10 +2,10 @@ package com.xiasuhuei321.sample;
 
 import android.content.Intent;
 import android.graphics.Color;
+import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
 import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -106,6 +106,12 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
             case R.id.btn2:
                 ld = new LoadingDialog(this);
+                ld.setOnFinishListener(new LoadingDialog.OnFinshListener() {
+                    @Override
+                    public void onFinish() {
+                        Toast.makeText(MainActivity.this, "绘制完毕", Toast.LENGTH_SHORT).show();
+                    }
+                });
                 ld.setLoadingText("加载中")
                         .setSuccessText("加载成功")
                         .setInterceptBack(intercept_back_event)
