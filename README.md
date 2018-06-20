@@ -1,3 +1,5 @@
+停止更新！因为比较简单，各位完全可以拿着源码简单的改一下就好，如果碰到解决不了的问题，可以在ISSUES中交流
+
 # LoadingDialog
 
 [![](https://jitpack.io/v/ForgetAll/LoadingDialog.svg)](https://jitpack.io/#ForgetAll/LoadingDialog)
