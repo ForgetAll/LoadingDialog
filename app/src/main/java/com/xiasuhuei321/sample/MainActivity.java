@@ -43,7 +43,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         initView();
-//        startActivity(new Intent(this,TempActivity.class));
     }
 
     private void initView() {
@@ -54,6 +53,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         findViewById(R.id.btn5).setOnClickListener(this);
         findViewById(R.id.btn6).setOnClickListener(this);
         findViewById(R.id.btn7).setOnClickListener(this);
+        findViewById(R.id.btn8).setOnClickListener(this);
     }
 
     @SuppressWarnings("all")
@@ -176,6 +176,12 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
             case R.id.btn7:
                 startActivity(new Intent(this, SampleActivity.class));
+                break;
+            case R.id.btn8:
+                startActivity(new Intent(MainActivity.this, TestActivity.class));
+                break;
+
+            default:
                 break;
         }
     }

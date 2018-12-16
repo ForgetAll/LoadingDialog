@@ -1,4 +1,5 @@
 apply plugin: 'com.android.application'
+apply plugin: 'kotlin-android'
 
 android {
     compileSdkVersion 28
@@ -29,4 +30,8 @@ dependencies {
     implementation project(':LoadingDialog')
     implementation 'io.reactivex:rxandroid:1.1.0'
     implementation 'io.reactivex:rxjava:1.1.0'
+    compile "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
+}
+repositories {
+    mavenCentral()
 }
