@@ -114,7 +114,7 @@ public class RightDiaView extends View {
             //画第一根线
             canvas.drawLine(center1, center, center1 + line1_x, center + line1_y, mPaint);
 
-            if (line1_x == radius / 3) {
+            if (line1_x >= radius / 3 &&line2_x==0&&line2_y==0) {
                 line2_x = line1_x;
                 line2_y = line1_y;
                 line1_x += speed;
