@@ -54,6 +54,21 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         findViewById(R.id.btn5).setOnClickListener(this);
         findViewById(R.id.btn6).setOnClickListener(this);
         findViewById(R.id.btn7).setOnClickListener(this);
+
+        ld = new LoadingDialog(this).setInterceptBack(true)
+                .setLoadingText("加载中")
+                .setLoadSpeed(LoadingDialog.Speed.SPEED_TWO)
+                .setSuccessText("成功")
+                .setSize(SizeUtils.dip2px(this, 48))
+                .setFailedText("失败");
+        ld.show();
+
+        h.postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                ld.loadSuccess();
+            }
+        }, 3000);
     }
 
     @SuppressWarnings("all")
