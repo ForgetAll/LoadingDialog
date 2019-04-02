@@ -61,7 +61,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 .setSuccessText("成功")
                 .setSize(SizeUtils.dip2px(this, 48))
                 .setFailedText("失败");
-        ld.show();
+//        ld.show();
 
         h.postDelayed(new Runnable() {
             @Override
@@ -69,6 +69,14 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 ld.loadSuccess();
             }
         }, 3000);
+
+        ld.setInterceptBack(true)
+                .setLoadingText("加载中")
+                .setLoadSpeed(LoadingDialog.Speed.SPEED_ONE)
+                .setSuccessText("成功")
+                .setSize(SizeUtils.dip2px(this, 48))
+                .setFailedText("失败");
+        ld.show();
     }
 
     @SuppressWarnings("all")
