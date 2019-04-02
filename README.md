@@ -1,3 +1,7 @@
+~~停止更新！因为比较简单，各位完全可以拿着源码简单的改一下就好，如果碰到解决不了的问题，可以在ISSUES中交流，写的时候自己也是一个初学者，侥幸获得了这么多star，感谢各位！~~
+
+一直还有人在 star，为了对得起各位的 star，我还是捡起来吧。。。
+
 # LoadingDialog
 
 [![](https://jitpack.io/v/ForgetAll/LoadingDialog.svg)](https://jitpack.io/#ForgetAll/LoadingDialog)
