@@ -2,6 +2,7 @@
 
 一直还有人在 star，为了对得起各位的 star，我还是捡起来吧。。。
 
+
 # LoadingDialog
 
 [![](https://jitpack.io/v/ForgetAll/LoadingDialog.svg)](https://jitpack.io/#ForgetAll/LoadingDialog)
@@ -18,7 +19,7 @@ Step 1. 把这玩意加到你的build.gradle里:
 Step 2. 加上这个依赖
 
 	dependencies {
-	        compile 'com.github.ForgetAll:LoadingDialog:v1.0.4'
+	       implementation 'com.github.ForgetAll:LoadingDialog:v1.1.0'
 	}
 
 
