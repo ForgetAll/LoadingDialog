@@ -22,8 +22,6 @@ import rx.Subscriber;
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
 
-    private LoadingDialog ld;
-
     public static final int LOAD_SUCCESS = 1;
     public static final int LOAD_FAILED = 2;
     public static final int LOADING = 3;
@@ -37,12 +35,15 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     private boolean intercept_back_event = false;
     private int color = Color.argb(255, 255, 255, 255);
     private int style = LoadingDialog.STYLE_LINE;
+    private boolean isShow = false;
+    private LoadingDialog ld;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         initView();
+        ld = new LoadingDialog(this);
 //        startActivity(new Intent(this,TempActivity.class));
     }
 
@@ -55,28 +56,28 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         findViewById(R.id.btn6).setOnClickListener(this);
         findViewById(R.id.btn7).setOnClickListener(this);
 
-        ld = new LoadingDialog(this).setInterceptBack(true)
-                .setLoadingText("加载中")
-                .setLoadSpeed(LoadingDialog.Speed.SPEED_TWO)
-                .setSuccessText("成功")
-                .setSize(SizeUtils.dip2px(this, 48))
-                .setFailedText("失败");
+//        ld = new LoadingDialog(this).setInterceptBack(true)
+//                .setLoadingText("加载中")
+//                .setLoadSpeed(LoadingDialog.Speed.SPEED_TWO)
+//                .setSuccessText("成功")
+//                .setSize(SizeUtils.dip2px(this, 48))
+//                .setFailedText("失败");
+////        ld.show();
+//
+//        h.postDelayed(new Runnable() {
+//            @Override
+//            public void run() {
+//                ld.loadSuccess();
+//            }
+//        }, 3000);
+//
+//        ld.setInterceptBack(true)
+//                .setLoadingText("加载中")
+//                .setLoadSpeed(LoadingDialog.Speed.SPEED_ONE)
+//                .setSuccessText("成功")
+//                .setSize(SizeUtils.dip2px(this, 48))
+//                .setFailedText("失败");
 //        ld.show();
-
-        h.postDelayed(new Runnable() {
-            @Override
-            public void run() {
-                ld.loadSuccess();
-            }
-        }, 3000);
-
-        ld.setInterceptBack(true)
-                .setLoadingText("加载中")
-                .setLoadSpeed(LoadingDialog.Speed.SPEED_ONE)
-                .setSuccessText("成功")
-                .setSize(SizeUtils.dip2px(this, 48))
-                .setFailedText("失败");
-        ld.show();
     }
 
     @SuppressWarnings("all")
@@ -116,15 +117,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.btn1:
-                ld = new LoadingDialog(this);
-                ld.setInterceptBack(intercept_back_event)
-                        .setLoadingText("加载中...")
-                        .setLoadStyle(style)
-                        .show();
-
-//                h.sendEmptyMessage(LOADING);
-
-                saveForThesePeopleWhoDoNotCallCloseAndUseInterceptBackMethod(intercept_back_event);
+                ld.show();
+                h.sendEmptyMessageDelayed(SAVE_YOU, 5000);
                 break;
 
             case R.id.btn2:

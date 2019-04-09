@@ -203,7 +203,7 @@ public class LoadingDialog implements FinishDrawListener {
      */
     public LoadingDialog setLoadStyle(int style) {
         if (style >= 3) {
-            throw new IllegalArgumentException("Your style is wrong!");
+            throw new IllegalArgumentException("Your style is wrong: style = " + style);
         }
         this.loadStyle = style;
         return this;
@@ -215,12 +215,10 @@ public class LoadingDialog implements FinishDrawListener {
      * LoadingDialog对象。
      */
     public void close() {
-        viewList.clear();
         h.removeCallbacksAndMessages(null);
         if (mLoadingDialog != null) {
             mLoadingView.stopAnim();
             mLoadingDialog.dismiss();
-            mLoadingDialog = null;
         }
     }
 
