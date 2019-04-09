@@ -3,9 +3,7 @@ package com.xiasuhuei321.sample;
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
-import android.os.Handler;
 import android.os.Message;
-import android.support.v7.app.AppCompatActivity;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -13,6 +11,7 @@ import android.widget.Toast;
 
 import com.xiasuhuei321.loadingdialog.view.LoadingDialog;
 import com.xiasuhuei321.loadingdialog.view.SizeUtils;
+import com.xiasuhuei321.sample.base.BaseLoadingActivity;
 
 import java.util.concurrent.TimeUnit;
 
@@ -20,7 +19,7 @@ import rx.Observable;
 import rx.Subscriber;
 
 
-public class MainActivity extends AppCompatActivity implements View.OnClickListener {
+public class MainActivity extends BaseLoadingActivity implements View.OnClickListener {
 
     public static final int LOAD_SUCCESS = 1;
     public static final int LOAD_FAILED = 2;
@@ -36,7 +35,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     private int color = Color.argb(255, 255, 255, 255);
     private int style = LoadingDialog.STYLE_LINE;
     private boolean isShow = false;
-    private LoadingDialog ld;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -44,7 +42,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         setContentView(R.layout.activity_main);
         initView();
         ld = new LoadingDialog(this);
-//        startActivity(new Intent(this,TempActivity.class));
     }
 
     private void initView() {
@@ -56,61 +53,31 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         findViewById(R.id.btn6).setOnClickListener(this);
         findViewById(R.id.btn7).setOnClickListener(this);
 
-//        ld = new LoadingDialog(this).setInterceptBack(true)
-//                .setLoadingText("加载中")
-//                .setLoadSpeed(LoadingDialog.Speed.SPEED_TWO)
-//                .setSuccessText("成功")
-//                .setSize(SizeUtils.dip2px(this, 48))
-//                .setFailedText("失败");
-////        ld.show();
-//
-//        h.postDelayed(new Runnable() {
-//            @Override
-//            public void run() {
-//                ld.loadSuccess();
-//            }
-//        }, 3000);
-//
-//        ld.setInterceptBack(true)
-//                .setLoadingText("加载中")
-//                .setLoadSpeed(LoadingDialog.Speed.SPEED_ONE)
-//                .setSuccessText("成功")
-//                .setSize(SizeUtils.dip2px(this, 48))
-//                .setFailedText("失败");
-//        ld.show();
     }
 
-    @SuppressWarnings("all")
-    Handler h = new Handler() {
-        @Override
-        public void handleMessage(Message msg) {
-            switch (msg.what) {
-                case LOAD_SUCCESS:
-                    ld.loadSuccess();
-                    break;
-                case LOAD_FAILED:
-                    ld.loadFailed();
-                    break;
-                case LOADING:
-                    ld.show();
-                    break;
-                case LOAD_WITHOUT_ANIM_FAILED:
-                    ld.loadFailed();
-                    break;
-                case LOAD_WITHOUT_ANIM_SUCCESS:
-                    ld.loadSuccess();
-                    break;
-                case SAVE_YOU:
-                    ld.close();
-                    break;
-            }
-        }
-    };
-
     @Override
-    protected void onDestroy() {
-        super.onDestroy();
-        h.removeCallbacksAndMessages(null);
+    protected void handleMessage(Message msg) {
+        super.handleMessage(msg);
+        switch (msg.what) {
+            case LOAD_SUCCESS:
+                ld.loadSuccess();
+                break;
+            case LOAD_FAILED:
+                ld.loadFailed();
+                break;
+            case LOADING:
+                ld.show();
+                break;
+            case LOAD_WITHOUT_ANIM_FAILED:
+                ld.loadFailed();
+                break;
+            case LOAD_WITHOUT_ANIM_SUCCESS:
+                ld.loadSuccess();
+                break;
+            case SAVE_YOU:
+                ld.close();
+                break;
+        }
     }
 
     @Override
@@ -264,8 +231,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         Observable.just("test after 2 seconds")
                 .delay(2, TimeUnit.SECONDS)
                 .compose(new RequestTransformer<>(this))
-//                .compose(new RequestTransformer<>(new RxLoadingDialog<>(this).subscribe()))
-//                .subscribe(System.out::println);
                 .subscribe(new Subscriber<Object>() {
                     @Override
                     public void onCompleted() {

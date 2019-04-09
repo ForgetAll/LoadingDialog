@@ -1,15 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    xmlns:tools="http://schemas.android.com/tools">
+    android:layout_height="wrap_content">
 
     <LinearLayout
         android:id="@+id/activity_main"
-        tools:context="com.xiasuhuei321.sample.MainActivity"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical">
+        android:orientation="vertical"
+        tools:context="com.xiasuhuei321.sample.MainActivity">
 
         <Button
             android:id="@+id/btn1"
@@ -61,10 +61,11 @@
 
         <Button
             android:id="@+id/btn8"
-            android:text="跳转新api界面"
-            android:layout_marginTop="8dp"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:text="跳转新api界面"
+            android:visibility="gone" />
 
     </LinearLayout>
 </ScrollView>
