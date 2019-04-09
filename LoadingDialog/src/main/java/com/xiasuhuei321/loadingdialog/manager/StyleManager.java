@@ -8,6 +8,12 @@ import com.xiasuhuei321.loadingdialog.view.LoadingDialog;
  */
 
 public class StyleManager {
+
+    public static StyleManager getDefault() {
+        return new StyleManager(true, 0, LoadingDialog.Speed.SPEED_TWO, -1, -1, 1000L,
+                true, "加载中...", "加载成功", "加载失败");
+    }
+
     public StyleManager() {
     }
 
@@ -29,7 +35,7 @@ public class StyleManager {
 
     public StyleManager(boolean open, int repeatTime, LoadingDialog.Speed speed,
                         int contentSize, int textSize, long showTime, boolean interceptBack,
-                        String loadText, String successText, String failedText,int loadStyle) {
+                        String loadText, String successText, String failedText, int loadStyle) {
         this.openAnim = open;
         this.repeatTime = repeatTime;
         this.speed = speed;

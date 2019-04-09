@@ -49,8 +49,7 @@ public class LoadingDialog implements FinishDrawListener {
     private long time = 1000;
     private int loadStyle = STYLE_RING;
 
-    private static StyleManager s = new StyleManager(true, 0, Speed.SPEED_TWO, -1, -1, 1000L,
-            true, "加载中...", "加载成功", "加载失败");
+    private static StyleManager s = StyleManager.getDefault();
     private LoadCircleView mCircleLoadView;
 
     public enum Speed {
@@ -187,12 +186,12 @@ public class LoadingDialog implements FinishDrawListener {
             mCircleLoadView.setVisibility(View.GONE);
             mLoadingDialog.show();
             mLoadingView.startAnim();
-            Log.e("show", "style_ring");
+            Log.i("show", "style_ring");
         } else if (loadStyle == STYLE_LINE) {
             mCircleLoadView.setVisibility(View.VISIBLE);
             mLoadingView.setVisibility(View.GONE);
             mLoadingDialog.show();
-            Log.e("show", "style_line");
+            Log.i("show", "style_line");
         }
     }
 
@@ -420,7 +419,7 @@ public class LoadingDialog implements FinishDrawListener {
     }
 
     /**
-     * dispatch the event when draw finish
+     * dispatch draw finish event
      * 传递绘制完成的事件
      *
      * @param o 回调接口
