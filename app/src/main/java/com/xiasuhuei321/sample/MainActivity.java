@@ -57,7 +57,6 @@ public class MainActivity extends BaseLoadingActivity implements View.OnClickLis
 
     @Override
     protected void handleMessage(Message msg) {
-        super.handleMessage(msg);
         switch (msg.what) {
             case LOAD_SUCCESS:
                 ld.loadSuccess();

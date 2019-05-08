@@ -22,13 +22,20 @@ public class BaseLoadingActivity extends AppCompatActivity {
     protected Handler h = new Handler() {
         @Override
         public void handleMessage(Message msg) {
-            super.handleMessage(msg);
-            handleMessage(msg);
+            BaseLoadingActivity.this.handleMessage(msg);
         }
     };
 
     protected void handleMessage(Message msg) {
 
+    }
+
+    protected void showLoading() {
+        ld.show();
+    }
+
+    protected void dismissLoading() {
+        ld.close();
     }
 
     @Override
