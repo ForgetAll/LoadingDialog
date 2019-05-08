@@ -41,7 +41,6 @@ public class MainActivity extends BaseLoadingActivity implements View.OnClickLis
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         initView();
-        ld = new LoadingDialog(this);
     }
 
     private void initView() {
@@ -74,7 +73,7 @@ public class MainActivity extends BaseLoadingActivity implements View.OnClickLis
                 ld.loadSuccess();
                 break;
             case SAVE_YOU:
-                ld.close();
+                dismissLoading();
                 break;
         }
     }
@@ -83,7 +82,7 @@ public class MainActivity extends BaseLoadingActivity implements View.OnClickLis
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.btn1:
-                ld.show();
+                showLoading();
                 h.sendEmptyMessageDelayed(SAVE_YOU, 5000);
                 break;
 

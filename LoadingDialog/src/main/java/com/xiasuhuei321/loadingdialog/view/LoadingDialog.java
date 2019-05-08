@@ -1,5 +1,6 @@
 package com.xiasuhuei321.loadingdialog.view;
 
+import android.annotation.SuppressLint;
 import android.app.Dialog;
 import android.content.Context;
 import android.content.DialogInterface;
@@ -58,6 +59,7 @@ public class LoadingDialog implements FinishDrawListener {
     }
 
     private OnFinshListener o;
+    private DismissListener d;
 
     public LoadingDialog(Context context) {
         mContext = context;
@@ -85,6 +87,7 @@ public class LoadingDialog implements FinishDrawListener {
             @Override
             public void onDismiss(DialogInterface dialog) {
                 mContext = null;
+                if (d != null) d.dimiss();
             }
         });
         initStyle();
@@ -145,6 +148,8 @@ public class LoadingDialog implements FinishDrawListener {
         loadingParams.width = size;
     }
 
+    // 会在最后将所有消息移除
+    @SuppressLint("HandlerLeak")
     private Handler h = new Handler() {
         @Override
         public void handleMessage(Message msg) {
@@ -427,11 +432,23 @@ public class LoadingDialog implements FinishDrawListener {
     }
 
     /**
+     * 设置 dismiss 监听
+     *
+     * @param d dismiss callback
+     */
+    public LoadingDialog setDimissListener(DismissListener d) {
+        this.d = d;
+        return this;
+    }
+
+    /**
      * 监听器
      */
     public interface OnFinshListener {
         void onFinish();
     }
 
-
+    public interface DismissListener {
+        void dimiss();
+    }
 }
