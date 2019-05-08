@@ -126,7 +126,7 @@ public class RightDiaView extends View {
                 line2_y -= speed;
             }
             //画第二根线
-            canvas.drawLine(center1 + line1_x - 1, center + line1_y,
+            canvas.drawLine(center1 + line1_x - 1, center + line1_y - 4,
                     center1 + line2_x, center + line2_y, mPaint);
         }
 
@@ -197,9 +197,7 @@ public class RightDiaView extends View {
      */
     protected void setSpeed(int speed) {
         if (speed <= 0 && speed >= 3) {
-            throw new IllegalArgumentException("how can u set this speed??  " + speed + "  do not " +
-                    "use reflect to use this method!u can see the LoadingDialog class for how to" +
-                    "set the speed");
+            throw new IllegalArgumentException("support speed >0 & < 3, the speed you set is: " + speed);
         } else {
             this.speed = speed;
         }
