@@ -158,7 +158,7 @@ public class RightDiaView extends View {
         int radius = mWidth / 2 - 8;
         canvas.drawLine(center1, center,
                 center1 + radius / 3, center + radius / 3, mPaint);
-        canvas.drawLine(center1 + radius / 3 - 1, center + radius / 3,
+        canvas.drawLine(center1 + radius / 3 - 1, center + radius / 3 - 4,
                 center1 + radius, center - radius / 3, mPaint);
     }
 

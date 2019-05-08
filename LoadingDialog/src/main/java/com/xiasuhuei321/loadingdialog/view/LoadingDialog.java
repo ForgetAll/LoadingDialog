@@ -234,8 +234,10 @@ public class LoadingDialog implements FinishDrawListener {
      * @return 这个对象
      */
     public LoadingDialog setLoadingText(String msg) {
-        if (msg != null && msg.length() > 0)
+        if (msg != null) {
+            loadingText.setVisibility(View.VISIBLE);
             loadingText.setText(msg);
+        } else loadingText.setVisibility(View.GONE);
         return this;
     }
 
@@ -246,8 +248,7 @@ public class LoadingDialog implements FinishDrawListener {
      * @return 这个对象
      */
     public LoadingDialog setSuccessText(String msg) {
-        if (msg != null && msg.length() > 0)
-            loadSuccessStr = msg;
+        loadSuccessStr = msg;
         return this;
     }
 
@@ -258,7 +259,7 @@ public class LoadingDialog implements FinishDrawListener {
      * @return 这个对象
      */
     public LoadingDialog setFailedText(String msg) {
-        if (msg != null && msg.length() > 0) loadFailedStr = msg;
+        loadFailedStr = msg;
         return this;
     }
 
@@ -272,7 +273,12 @@ public class LoadingDialog implements FinishDrawListener {
         hideAll();
         mSuccessView.setDrawDynamic(openSuccessAnim);
         mSuccessView.setVisibility(View.VISIBLE);
-        loadingText.setText(loadSuccessStr);
+        if (loadSuccessStr == null) {
+            loadingText.setVisibility(View.GONE);
+        } else {
+            loadingText.setVisibility(View.VISIBLE);
+            loadingText.setText(loadSuccessStr);
+        }
     }
 
     /**
@@ -285,7 +291,12 @@ public class LoadingDialog implements FinishDrawListener {
         hideAll();
         mFailedView.setDrawDynamic(openFailedAnim);
         mFailedView.setVisibility(View.VISIBLE);
-        loadingText.setText(loadFailedStr);
+        if (loadFailedStr == null) {
+            loadingText.setVisibility(View.GONE);
+        } else {
+            loadingText.setVisibility(View.VISIBLE);
+            loadingText.setText(loadFailedStr);
+        }
     }
 
     /**

@@ -6,8 +6,8 @@ android {
     defaultConfig {
         minSdkVersion MINSDKVERSION as int
         targetSdkVersion TARGETSDKVERSION as int
-        versionCode VERSION_CODE as int
-        versionName VERSION_NAME as String
+        versionCode LIB_VERSION_CODE as int
+        versionName LIB_VERSION_NAME as String
 
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
 

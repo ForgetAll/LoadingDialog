@@ -82,6 +82,7 @@ public class MainActivity extends BaseLoadingActivity implements View.OnClickLis
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.btn1:
+                ld.setLoadingText(null);
                 showLoading();
                 h.sendEmptyMessageDelayed(SAVE_YOU, 5000);
                 break;
@@ -99,6 +100,7 @@ public class MainActivity extends BaseLoadingActivity implements View.OnClickLis
                         .setInterceptBack(intercept_back_event)
                         .setLoadSpeed(speed)
                         .setRepeatCount(repeatTime)
+                        .setShowTime(1000)
 //                        .setDrawColor(color)
                         .setLoadStyle(style)
                         .show();
@@ -109,12 +111,12 @@ public class MainActivity extends BaseLoadingActivity implements View.OnClickLis
             case R.id.btn3:
                 ld = new LoadingDialog(this);
                 ld.setLoadingText("加载中")
-                        .setFailedText("加载失败")
+                        .setFailedText(null)
                         .setInterceptBack(intercept_back_event)
                         .setLoadSpeed(speed)
                         .setRepeatCount(repeatTime)
 //                        .setDrawColor(color)
-                        .setShowTime(5000)//延时5秒自动关闭，默认1秒
+                        .setShowTime(2000)//延时5秒自动关闭，默认1秒
                         .setLoadStyle(style)
                         .show();
                 h.sendEmptyMessageDelayed(LOAD_FAILED, delayedTime);
