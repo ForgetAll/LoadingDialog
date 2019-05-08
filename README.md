@@ -19,7 +19,7 @@ Step 1. 把这玩意加到你的build.gradle里:
 Step 2. 加上这个依赖
 
 	dependencies {
-	       implementation 'com.github.ForgetAll:LoadingDialog:v1.1.0-alpha'
+	       implementation 'com.github.ForgetAll:LoadingDialog:v1.1.2'
 	}
 
 
