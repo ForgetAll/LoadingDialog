@@ -13,6 +13,7 @@ import android.view.View;
  * Created by xiasuhuei321 on 2017/5/15.
  * author:luo
  * e-mail:xiasuhuei321@163.com
+ * origin author: 习惯沉默(https://ydmmocoo.github.io/2016/06/24/Android%E8%87%AA%E5%AE%9A%E4%B9%89%E5%8A%A0%E8%BD%BD%E4%B8%ADDialog/)
  */
 
 public class LoadCircleView extends View {
