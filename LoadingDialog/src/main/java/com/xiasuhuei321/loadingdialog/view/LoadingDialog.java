@@ -30,7 +30,6 @@ public class LoadingDialog implements FinishDrawListener {
     public final String TAG = "LoadingDialog";
     public static final int STYLE_RING = 0;
     public static final int STYLE_LINE = 1;
-    private Context mContext;
 
     private LVCircularRing mLoadingView;
     private Dialog mLoadingDialog;
@@ -62,7 +61,6 @@ public class LoadingDialog implements FinishDrawListener {
     private DismissListener d;
 
     public LoadingDialog(Context context) {
-        mContext = context;
         // 首先得到整个View
         @SuppressWarnings("all")
         View view = LayoutInflater.from(context).inflate(
@@ -86,7 +84,6 @@ public class LoadingDialog implements FinishDrawListener {
         mLoadingDialog.setOnDismissListener(new DialogInterface.OnDismissListener() {
             @Override
             public void onDismiss(DialogInterface dialog) {
-                mContext = null;
                 if (d != null) d.dimiss();
             }
         });
@@ -198,6 +195,14 @@ public class LoadingDialog implements FinishDrawListener {
             mLoadingDialog.show();
             Log.i("show", "style_line");
         }
+    }
+
+    /**
+     * Whether the dialog is currently showing
+     * 当前dialog是否正在显示
+     */
+    public boolean isShowing() {
+        return mLoadingDialog != null && mLoadingDialog.isShowing();
     }
 
     /**
@@ -424,6 +429,19 @@ public class LoadingDialog implements FinishDrawListener {
     public LoadingDialog setTextSize(float size) {
         if (size < 0) return this;
         loadingText.setTextSize(TypedValue.COMPLEX_UNIT_SP, size);
+        return this;
+    }
+
+    /**
+     * set the size of load text size
+     * 设置加载字体大小
+     *
+     * @param size 尺寸，单位px
+     * @return 这个对象
+     */
+    public LoadingDialog setTextSizeWithPx(float size) {
+        if (size < 0) return this;
+        loadingText.setTextSize(TypedValue.COMPLEX_UNIT_PX, size);
         return this;
     }
 
